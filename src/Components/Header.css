@@ -1,0 +1,35 @@
+.header-container {
+  display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--header-height);
+    color: var(--color-tone-1);
+    border-bottom: 1px solid #3a3a3c;
+    width: 70vw;
+    margin: 0 auto;
+}
+.title {
+  width: 70vw;
+  height: 50px;
+}
+
+.text {
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+  pointer-events: none;
+  color: #d7dadc;
+}
+
+.main {
+  font-weight: 700;
+  font-size: 36px;
+  text-align: center;
+  display: inline-block;
+    
+}
+
+.secondary {
+  font-weight: 500;
+  font-size: 16px;
+  margin-left: 10px;
+}
