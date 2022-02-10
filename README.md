@@ -1,3 +1,8 @@
+# wordle2000
+This is a simplified version of wordle, the answer will only be the 2000 words necessary for high school students in Taiwan. If you want, you can continue to guess the next puzzle. You don't have to wait until tomorrow. Have fun.
+Link to original version: https://www.powerlanguage.co.uk/wordle/
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -41,6 +46,4 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 
 ## Learn More
 
-# wordle2000
-This is a simplified version of wordle, the answer will only be the 2000 words necessary for high school students in Taiwan. If you want, you can continue to guess the next puzzle. You don't have to wait until tomorrow. Have fun.
-Link to original version: https://www.powerlanguage.co.uk/wordle/
+
