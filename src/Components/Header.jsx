@@ -1,7 +1,7 @@
 import React from 'react'
 import './Header.css'
 
-export default function Header({ setIsInfoModalVisible }) {
+export default function Header({ setIsInfoModalVisible, setIsResultVisible }) {
     return (
         <header className='header-container'>
             <div onClick={() => setIsInfoModalVisible(true)}>
@@ -17,7 +17,11 @@ export default function Header({ setIsInfoModalVisible }) {
                     2000
                 </span>
             </div>
-
+            <div onClick={() => setIsResultVisible(true)}>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                    <path fill="#d7dadc" d="M16,11V3H8v6H2v12h20V11H16z M10,5h4v14h-4V5z M4,11h4v8H4V11z M20,19h-4v-6h4V19z"></path>
+                </svg>
+            </div>
         </header>
     )
 }

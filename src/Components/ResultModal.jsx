@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import './ResultModal.css'
 
-export default function ResultModal({ handleCloseModal, visible, tileArr, guessTime, showAlert, setIsrandomMode }) {
+export default function ResultModal({ handleCloseModal, visible, tileArr,
+    guessTime, showAlert, setIsrandomMode, isWinGame, targetWord }) {
     const [copied, setCopied] = useState(false)
 
     const resultEmoji = tileArr.map((e, i) => {
@@ -47,8 +48,21 @@ ${resultEmoji}`
         handleCloseModal()
     }
 
+    const renderTitle = () => {
+        switch (isWinGame) {
+            case undefined:
+                return '想跳過這個迷底嗎？'
+            case true:
+                return '恭喜過關'
+            case false:
+                return '再接再厲'
+            default:
+                return '總結'
+        }
+    }
+
     return (<div style={visible ? {} : { display: 'none' }}>
-        <div className='mask' onClick={() => handleCloseModal()} />
+        <div className='mask' />
         <div className='modal-container'>
             <div className='close-btn' onClick={() => handleCloseModal()}>
                 <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
@@ -56,7 +70,8 @@ ${resultEmoji}`
                 </svg>
             </div>
 
-            <h1> 結算 </h1>
+            <h1> {renderTitle()}</h1>
+            {isWinGame === false && <p>{`本次的謎底是： ${targetWord}`}</p>}
             <div className='describe'>
                 <p>正常來說一天只能猜一次，但如果你很想趕快猜下一個的話，可以按下面的按鈕來進行下一關</p>
 

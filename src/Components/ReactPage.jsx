@@ -22,9 +22,11 @@ export default function ReactPage() {
     const [curTileValue, setCurTileValue] = useState('');
     const [alterMsg, setAlterMsg] = useState('');
     const [isFliping, setIsFliping] = useState(false);
+    const [interactable, setInteractable] = useState(true);
     const [keyboardState, setKeyboardState] = useState(allphabetObj);
     const [isGuessed, setIsGuessed] = useState(false);
     const [isResultVisible, setIsResultVisible] = useState(false)
+    const [isWinGame, setIsWinGame] = useState(undefined)
     const [isInfoModalVisible, setIsInfoModalVisible] = useState(true)
     const [israndomMode, setIsrandomMode] = useState(false)
 
@@ -41,6 +43,7 @@ export default function ReactPage() {
     const targetWordArr = targetWord?.split('')
 
     const handlePress = (e) => {
+        if (!interactable) return
         if (gridIndex.current > 28) return
         if (isFiveWord && !isGuessed) return
         setCurTileValue(e.toLowerCase())
@@ -114,9 +117,10 @@ export default function ReactPage() {
                 const tartgetAlphabet = e.alphabet.toUpperCase()
                 if (guess === targetWord) {
                     showAlert('恭喜獲勝')
+                    setIsWinGame(true)
                     setTimeout(() => {
                         setIsResultVisible(true)
-                    }, 1500);
+                    }, 1200);
                     setKeyboardState(pre => ({ ...pre, [tartgetAlphabet]: 'correct' }))
                     return { ...e, dance: true, correct: true }
                 } else if (targetWordArr[triggerTimeOffset] === e.alphabet) {
@@ -133,12 +137,14 @@ export default function ReactPage() {
             } else return e
         })
         if (gridIndex.current === 29 && guess !== targetWord) {
-            showAlert('失敗了')
+            showAlert(`失敗了 正確答案是: ${targetWord}`)
+            setIsWinGame(false)
             setTimeout(() => {
                 setIsResultVisible(true)
-            }, 1500);
+            }, 1300);
         }
         setIsFliping(true)
+        setInteractable(false)
         setTileArr(newArr)
     }
 
@@ -155,21 +161,26 @@ export default function ReactPage() {
                 setIsFliping(false)
 
             }, 500);
+            setTimeout(() => {
+                if (!isResultVisible) {
+                    setInteractable(true)
+                }
+            }, 1300);
             setIsGuessed(true)
         }
-    }, [curTileValue, isFliping, tileArr]);
+    }, [curTileValue, isFliping, isResultVisible, tileArr]);
 
+    //init game
     useEffect(() => {
         if (israndomMode) {
-
             setTileArr(tileArrPorto.current)
             setCurTileValue('');
             setKeyboardState(allphabetObj);
             gridIndex.current = -1
             setIsrandomMode(false)
+            setIsWinGame(undefined)
             setTargetWord(targetWords[getRandom(targetWords.length)])
         }
-
     }, [israndomMode, targetWords])
 
 
@@ -202,7 +213,7 @@ export default function ReactPage() {
     }
 
     return <div onKeyDown={(e) => handleKeyPress(e)} tabIndex="0" style={{ outline: 'none' }}>
-        <Header setIsInfoModalVisible={setIsInfoModalVisible} />
+        <Header setIsInfoModalVisible={setIsInfoModalVisible} setIsResultVisible={setIsResultVisible} />
         <Alert key={`alert_${alterIndex.current}`} msg={alterMsg} setAlterMsg={setAlterMsg} />)
         <TileGrid tileData={tileArr} originAttribute={originAttribute} />
         <Keyboard
@@ -215,7 +226,9 @@ export default function ReactPage() {
             handleCloseModal={setIsResultVisible}
             tileArr={tileArr}
             showAlert={showAlert}
+            targetWord={targetWord}
             setIsrandomMode={setIsrandomMode}
+            isWinGame={isWinGame}
             guessTime={(gridIndex.current + 1) / 5} />
 
         <InfoModal
