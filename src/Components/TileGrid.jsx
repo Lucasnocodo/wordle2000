@@ -1,7 +1,7 @@
 import React from 'react';
 import './TailGrid.css'
 export default function TileGrid({ tileData, originAttribute }) {
-    return <div className='guess-grid' data-guess-grid>
+    return <div className='guess grid-box' data-guess-grid>
 
         {tileData.map((e, i) => {
             const getClass = () => {

@@ -39,7 +39,7 @@ export default function ReactPage() {
     const isFiveWord = tileArr.filter((e) => e.active).length > 4
     const [targetWord, setTargetWord] = useState(targetWordValue)
     const targetWordArr = targetWord?.split('')
-    console.log('targetWordArr', targetWordArr)
+
     const handlePress = (e) => {
         if (gridIndex.current > 28) return
         if (isFiveWord && !isGuessed) return
@@ -132,6 +132,12 @@ export default function ReactPage() {
                 }
             } else return e
         })
+        if (gridIndex.current === 29 && guess !== targetWord) {
+            showAlert('失敗了')
+            setTimeout(() => {
+                setIsResultVisible(true)
+            }, 1500);
+        }
         setIsFliping(true)
         setTileArr(newArr)
     }
@@ -194,12 +200,9 @@ export default function ReactPage() {
 
         setTileArr(newArr)
     }
-    console.log('targetWord', targetWord)
 
     return <div onKeyDown={(e) => handleKeyPress(e)} tabIndex="0" style={{ outline: 'none' }}>
-
         <Header setIsInfoModalVisible={setIsInfoModalVisible} />
-
         <Alert key={`alert_${alterIndex.current}`} msg={alterMsg} setAlterMsg={setAlterMsg} />)
         <TileGrid tileData={tileArr} originAttribute={originAttribute} />
         <Keyboard

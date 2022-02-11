@@ -1,15 +1,27 @@
-.guess-grid {
+.guess {
+  height: 57vh;
+  grid-template-columns: repeat(5, 62px);
+  grid-template-rows: repeat(6, 62px);
+  justify-content: center;
+
+}
+
+.grid-box {
     display: grid;
-    justify-content: center;
     align-content: center;
     flex-grow: 1;
-    grid-template-columns: repeat(5, 62px);
-    grid-template-rows: repeat(6, 62px);
     gap: .25em;
     margin-bottom: 1em;
-    height: 57vh;
   }
   
+  .sample {
+    height: 37px;
+    grid-template-columns: repeat(5, 35px);
+    grid-template-rows: repeat(1, 35px);
+    justify-content: left;
+
+  }
+
   .tile {
     font-size: 2em;
     color: white;

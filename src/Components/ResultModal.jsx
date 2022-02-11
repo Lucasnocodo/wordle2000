@@ -56,7 +56,7 @@ ${resultEmoji}`
                 </svg>
             </div>
 
-            <h1> 恭喜答對 </h1>
+            <h1> 結算 </h1>
             <div className='describe'>
                 <p>正常來說一天只能猜一次，但如果你很想趕快猜下一個的話，可以按下面的按鈕來進行下一關</p>
 
