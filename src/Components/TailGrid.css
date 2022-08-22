@@ -1,5 +1,4 @@
 .guess {
-  height: 57vh;
   grid-template-columns: repeat(5, 62px);
   grid-template-rows: repeat(6, 62px);
   justify-content: center;
@@ -11,7 +10,7 @@
     align-content: center;
     flex-grow: 1;
     gap: .25em;
-    margin-bottom: 1em;
+    margin: 1rem auto;
   }
   
   .sample {

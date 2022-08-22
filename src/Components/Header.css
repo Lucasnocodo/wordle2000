@@ -6,7 +6,7 @@
     color: var(--color-tone-1);
     border-bottom: 1px solid #3a3a3c;
     width: 80vw;
-    margin: 0 auto;
+    margin: 15px auto 0;
 }
 .title {
   width: 70vw;

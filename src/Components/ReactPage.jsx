@@ -9,7 +9,6 @@ import wordsList from '../1000en.json'
 import dictionary from '../dictionary.json'
 import { allphabetObj } from '../Constant/alphabet';
 
-
 export default function ReactPage() {
     const gridIndex = useRef(-1);
     const alterIndex = useRef(0);
@@ -34,14 +33,13 @@ export default function ReactPage() {
         return Math.floor(Math.random() * x) + 1;
     };
 
-    const offsetFromDate = new Date(2022, 0, 1)
+    const offsetFromDate = new Date(2022, 7, 21)
     const msOffset = Date.now() - offsetFromDate
-    const dayOffset = msOffset / 1000 / 60 / 60 / 24
+    const dayOffset = msOffset / 1000 / 60 / 60 / 24 % targetWords.length
     const targetWordValue = targetWords[Math.floor(dayOffset)]
     const isFiveWord = tileArr.filter((e) => e.active).length > 4
     const [targetWord, setTargetWord] = useState(targetWordValue)
     const targetWordArr = targetWord?.split('')
-
     const handlePress = (e) => {
         if (!interactable) return
         if (gridIndex.current > 28) return
@@ -110,6 +108,7 @@ export default function ReactPage() {
         }
 
         let triggerTimeOffset = -1
+        console.log('targetWordArr', targetWordArr)
         const newArr = tmpArr.map((e) => {
             if (e.active) {
                 triggerTimeOffset += 1

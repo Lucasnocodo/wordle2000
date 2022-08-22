@@ -107,6 +107,10 @@ p {
    
 }
 
+.disable-share {
+    background-color: #ccc;
+    color: #666;
+}
 .link {
     font-size: 14px;
     color: #d7dadc;
